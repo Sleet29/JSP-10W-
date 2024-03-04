@@ -8,11 +8,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
-@WebServlet("/ex1/_2.mem/memReg3")
-public class ChoiceFruitServlet extends HttpServlet {
+@WebServlet("/ex1/_2.mem/memReg2")
+public class ChoiceFruitServlet2 extends HttpServlet {
     public static final long serialVersionUID = 1L;
     
-    public ChoiceFruitServlet() {
+    public ChoiceFruitServlet2() {
     	super();
     }
     
@@ -34,13 +34,26 @@ public class ChoiceFruitServlet extends HttpServlet {
 				    fruit=apple.png에서 값을 가져옵니다. 
     	 */
     	
-    	System.out.println("request.getParameter(\"fruit\") => " + request.getParameter("fruit"));
-    	String[] f = request.getParameterValues("fruit");
+    	System.out.println("처음의 fruit 값 :" + request.getParameter("fruit")); 
+    	String[] f = request.getParameterValues ("fruit");
     	
-    	System.out.println("===== 선택한 모든 과일 시작 =====");
-    	for(String fruit : f) {
-    		System.out.println(fruit);
+    	out.println("<html> <head> <style>");
+    	out.println("body{background:black;}");
+    	out.println("table{background: yellow; margin:0 auto; top: 30%; "
+    			+ "position: relative}");
+    	out.println("td{color:red; font-size: 20px; text-align: center; "
+    			+  	"border:1px solid black; height: 2em; width:200px}");
+    	out.println("</style> </head>");
+    	out.println("<body> <table><tbody><tr>");
+    	
+    	for (int num = 0; num <f.length; num++) {
+    		out.println("<td>" + f[num] + "</td>");
     	}
-    	System.out.println("===== 선택한 모든 과일 끝 =====");
+    	out.println("</tr><tr>");
+    	for (int num = 0; num <f.length; num++) {
+    		out.println("<td><img width=128 height=128 src='../../image/"+f[num] + "'></td>");
+    	}
+    	out.println("</tr></tbody></table> </body></html>");
+    	out.close();
     }
 }
