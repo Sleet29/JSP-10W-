@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 Error - Page Not Found</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    overflow: hidden;
+  }
+  .error-container {
+    text-align: center;
+    position: relative;
+  }
+  .error-img {
+    width: 200px;
+    height: auto;
+    animation: spin 5s infinite linear, resize 5s infinite;
+  }
+  .error-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px;
+    animation: rainbow 1s infinite;
+  }
+  @keyframes rainbow {
+    0% { color: red; }
+    20% { color: orange; }
+    40% { color: yellow; }
+    60% { color: green; }
+    80% { color: blue; }
+    100% { color: purple; }
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes resize {
+    0% { width: 100px; }
+    20% { width: 200px;}
+    40% { width: 300px; } 
+    60% { width: 300px; }
+    80% { width: 200px; }
+    100% { width: 100px; }
+  }
+</style>
+</head>
+<body>
+<div class="error-container">
+  <img class="error-img" src="thief.jpg" alt="Error Image">
+  <p class="error-text">404 Error - Page Not Found</p>
+</div>
+</body>
+</html>
