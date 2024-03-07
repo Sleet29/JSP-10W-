@@ -22,8 +22,25 @@
     alert('<%=id%>님 환영합니다.');
     location.href="templatetest.jsp";
 </script>
+
 <%
-    } else if (id.equals(inputid)) {
+		String check_value = request.getParameter("remember");
+		Cookie cookie = new Cookie("id", request.getParameter("id")); 
+		
+		// check_value != null 문장이 없다면 체크박스를 체크하지 않은 경우 check_value.equals("store") 문장에서 오류
+		// if (check_value.equals("store")) // NullPointerException  
+		// "아이디 기억하기"를 체크한 경우
+		if (check_value != null && check_value.equals("store")) {
+			//cookie.setMaxAge(60*60*24); // 쿠키의 유효시간을 24시간으로 설정합니다. 
+			cookie.setMaxAge (2 * 60);    // 유효시간은 2분으로 설정합니다. 
+			response.addCookie (cookie);
+		} else {
+			cookie.setMaxAge(0);
+			response.addCookie(cookie); 
+		}
+		
+	} else if (id.equals(inputid)) {
+
 %>
 <script>
     alert("비밀번호를 확인하세요.");

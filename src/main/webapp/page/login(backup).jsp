@@ -1,50 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
  pageEncoding="UTF-8"%>
- <% 
- 	String id = "";
- 	Cookie[] cookies = request.getCookies();
- 	if(cookies !=null) {
- 		for(int i=0;i<cookies.length;i++) {
- 			if(cookies[i].getName().equals("id")){
- 				id=cookies[i].getValue();
- 			}
- 		}
- 	}
- %>
+<!DOCTYPE html>
 <html>
 <head>
-<title>쿠키를 이용한 아이디 기억</title>
+<title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <script src="<%=request.getContextPath()%>/js/jquery-3.7.1.js"></script>
   <style>
     .container{margin:3em auto; border:1px solid lightgray;width:500px}
   </style>
-<script>
-	$(function() {
-		const id_val = '<%=id%>';
-		if(id_val) {
-			$("#id").val(id_val).css('font-weight',"bold");
-			$("#remember").prop('checked',true);
-		}
-		
-		$("form").submit(function() {
-			const $id = $("#id");
-			if(!$.trim($id.val())) {
-				alert("아이디를 입력하세요");
-				$id.focus();
-				return false;
-			}
-			
-			const $pass=$("#pass");
-			if(!$.trim($("#pass").val())){
-				alert("비밀번호를 입력하세요");
-				$pass.focus();
-				return false;
-			}
-		})
-	})
-</script>
 </head>
 <body>
 
@@ -55,6 +20,15 @@
        <label for="id">id</label>
        <input type="text" class="form-control"  id="id" placeholder="Enter id"  name="id">
        	<%-- 아이디 쿠키가 존재시 해당 값을 아이디 필드에 설정 --%>
+       	<% Cookie[] cookies = request.getCookies();
+               if (cookies != null) {
+                   for (Cookie cookie : cookies) {
+                       if (cookie.getName().equals("rememberedId")) {
+                           out.print("value=\"" + cookie.getValue() + "\"");
+                       }
+                   }
+               }
+        %>
     </div>
 	<div class="form-group">
        <label for="pass">Password</label>
